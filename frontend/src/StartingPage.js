@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import girlImage from './images/girl.png';
+import girlImage from './images/pd2.png';
 
 const StartingPage = () => {
   const canvasRef = useRef(null);
@@ -12,8 +12,8 @@ const StartingPage = () => {
     image.src = girlImage;
 
     image.onload = () => {
-      const maxWidth = 800; // Set the maximum width of the resized image
-      const maxHeight = 600; // Set the maximum height of the resized image
+      const maxWidth = 900; // Increase the maximum width of the resized image
+      const maxHeight = 700; // Increase the maximum height of the resized image
 
       let width = image.width;
       let height = image.height;
@@ -42,7 +42,10 @@ const StartingPage = () => {
   const containerStyle = {
     position: 'fixed',
     bottom: 0,
-    right: 0
+    right: 0,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end'
   };
 
   return (

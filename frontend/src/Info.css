@@ -1,0 +1,77 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  @font-face {
+    font-family: 'Raleway';
+    src: url('./fonts/Raleway/static/Raleway-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .text {
+    font-family: 'Raleway', sans-serif; /* Apply the Raleway font */
+    font-size: 30px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+
+  .box-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw; /* Span the whole page width */
+    max-width: 1200px; /* Set a maximum width for the container */
+    margin-bottom: 40px; /* Add margin between box containers */
+  }
+
+  .box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #FDD5DF;
+    border-radius: 5px;
+    width: 30%; /* Adjust the width of the divs */
+    height: 100px; /* Adjust the height of the divs */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    margin-right: 20px; /* Add margin between the boxes */
+  }
+
+  .icon {
+    margin-right: 10px;
+  }
+
+  .text {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .button {
+    font-family: 'Raleway', sans-serif; /* Apply the Raleway font */
+    background-color: #FDD5DF;
+    border: none;
+    border-radius: 13px;
+    padding: 15px 40px; /* Adjust the padding of the button */
+    font-size: 16px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    height: 60px;
+    margin-top: 80px; /* Adjust the margin-top of the button */
+    width: 30%; /* Adjust the width of the button */
+  }
+
+  body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
