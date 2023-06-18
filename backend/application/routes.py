@@ -5,7 +5,8 @@ from application.helpers import split_into_sentences, evaluate_each_sentence, tr
 @app.route('/evaluate', methods=["GET","POST"])
 def evaluate():
     #recieving data from front end
-    text = request.get_json()
+    data = request.get_json()
+    text = data.get("text")
     #splitting the text
     sentences = split_into_sentences(text)
     #model response 
@@ -15,8 +16,10 @@ def evaluate():
     #tolerance score
     score = calculate_score(formatted_output)
     #suggestions to correct
-    suggestions = get_suggestions(get_non_friendly(formatted_output))
+    #suggestions = get_suggestions(get_non_friendly(formatted_output))
     #providing new version of the text
-    corrected_text =  correct_text(formatted_output,suggestions)
+    #corrected_text =  correct_text(formatted_output,suggestions)
+    #needs_correction
+    needs_correction = get_non_friendly(formatted_output)
     
-    return [score, formatted_output, suggestions, corrected_text]
+    return [score, formatted_output, needs_correction]

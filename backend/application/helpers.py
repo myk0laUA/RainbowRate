@@ -1,34 +1,37 @@
 from application import app, co
 import datetime
-import nltk
+import re
 
 
 def split_into_sentences(text):
-    nltk.download('punkt')  # This downloads the Punkt tokenizer.
-    tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
-    return tokenizer.tokenize(text)
+    return [s.strip() for s in re.split('[.!?]', text) if s]
+
+# Example usage
+text = "This is the first sentence. Here is another. And another!"
+print(split_into_sentences(text))
+
 
 def evaluate_each_sentence(inputs):
     response = co.classify(
         model='66c0a6ab-a4b6-445e-8acb-b90cc718f3cf-ft',
         inputs = inputs)
-    return response
+    return response.classifications
 
 def transform_response(response):
     # Loop over the initial data and format it
-    formatted_data = [{"input": clsf["input"], "prediction": clsf["prediction"]} for clsf in response["classifications"]]
+    formatted_data = [{"input": r.input, "prediction": r.prediction} for r in response]
     return formatted_data
 
 def get_non_friendly(formatted_data):
     non_friendly = []
     for data in formatted_data:
         if data["prediction"] == "NON-PRIDE-FRIENDLY":
-            non_friendly += data["input"]
+            non_friendly += [data["input"]]
     return non_friendly
 
 def calculate_score(formatted_data):
     numb_friendly = 0
-    numb_sentences = 0
+    numb_sentences = 1
     for data in formatted_data:
         if data["prediction"] == "NON-PRIDE-FRIENDLY":
             numb_sentences +=1
