@@ -1,14 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import UpperMenu from './UpperMenu';
 import './TextImport.css';
 
-const TextImport = () => {
-  const [textValue, setTextValue] = useState('');
-
-  const handleTextChange = (e) => {
-    setTextValue(e.target.value);
-  };
-
+const TextImport = ({ onSubmit, onTextChange }) => {
   const handleMenuItemHover = (e) => {
     const target = e.target;
     target.style.borderBottom = '2px solid #1B0909';
@@ -31,10 +25,12 @@ const TextImport = () => {
 
         <div className="text-area-container">
           <div className="text-area-wrapper">
-            <textarea className="text-area" placeholder="Type here..." value={textValue} onChange={handleTextChange} />
+            <textarea className="text-area" placeholder="Type here..." onChange={onTextChange} />
           </div>
           <div className="submit-container">
-            <button className="submit-button">Submit</button>
+            <button className="submit-button" onClick={onSubmit}>
+              Submit
+            </button>
           </div>
         </div>
       </div>

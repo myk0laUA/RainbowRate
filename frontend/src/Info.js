@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UpperMenu from './UpperMenu';
 import './Info.css';
 import pointing from "./images/pointing2.svg";
@@ -26,18 +26,30 @@ const Box = ({ icon, text }) => (
   </div>
 );
 
-const Info = () => (
-  <div>
-    <UpperMenu handleMenuItemHover={handleMenuItemHover} handleMenuItemLeave={handleMenuItemLeave} />
-    <div className="container">
-      <div className="box-container">
-        <Box icon={textIcon} text={"Provide your\n text\n"} />
-        <Box icon={pointing} text={"Click the\n button\n"} />
-        <Box icon={glass} text={"Check\n the output\n"} />
+const Info = ({ onImportText }) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked(true);
+    onImportText(); // Call the onImportText function provided by the parent component
+  };
+
+  return (
+    <div>
+      <UpperMenu handleMenuItemHover={handleMenuItemHover} handleMenuItemLeave={handleMenuItemLeave} />
+      <div className="container">
+        <div className="box-container">
+          <Box icon={textIcon} text={"Provide your\n text\n"} />
+          <Box icon={pointing} text={"Click the\n button\n"} />
+          <Box icon={glass} text={"Check\n the output\n"} />
+        </div>
+        <button className={`button ${isClicked ? 'clicked' : ''}`} onClick={handleClick}>
+          <span className={`fill ${isClicked ? 'filled' : ''}`}></span>
+          Start
+        </button>
       </div>
-      <button className="button">Start</button>
     </div>
-  </div>
-);
+  );
+};
 
 export default Info;

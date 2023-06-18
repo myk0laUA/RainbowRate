@@ -4,7 +4,7 @@ import drawing from "./images/writing.svg";
 import UpperMenu from './UpperMenu';
 import RalewayRegular from './fonts/Raleway/static/Raleway-Regular.ttf';
 
-const MyComponent = () => {
+const MyComponent = ({ onStartClick }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const styles = `
@@ -96,6 +96,7 @@ const MyComponent = () => {
     position: 'relative',
     overflow: 'hidden',
     marginLeft: '-40px',
+    fontFamily: 'RalewayRegular, sans-serif', // Updated font-family
   };
 
   const fillStyle = {
@@ -117,7 +118,10 @@ const MyComponent = () => {
 
   const handleClick = () => {
     setIsClicked(true);
-    setTimeout(() => setIsClicked(false), 500);
+    setTimeout(() => {
+      setIsClicked(false);
+      onStartClick(); // Call the provided callback function
+    }, 500);
   };
 
   const handleMenuItemHover = (e) => {
@@ -133,7 +137,7 @@ const MyComponent = () => {
   return (
     <div style={mainStyle}>
       <style>{styles}</style>
-      <UpperMenu Upper
+      <UpperMenu
         handleMenuItemHover={handleMenuItemHover}
         handleMenuItemLeave={handleMenuItemLeave}
       />
